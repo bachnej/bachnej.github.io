@@ -28,6 +28,22 @@
       --shadow:    0 1px 2px rgba(28,26,23,.04), 0 8px 24px rgba(28,26,23,.05);
     }
 
+    [data-theme="dark"] {
+      --bg:        #0e0e12;
+      --surface:   #16161c;
+      --surface-2: #1c1c24;
+      --border:    #2a2a33;
+      --border-2:  #353541;
+      --amber:     #f59e0b;
+      --amber-soft:#2a1f10;
+      --amber-line:#4a3416;
+      --ink:       #ece9e3;
+      --ink-2:     #b4afa6;
+      --ink-3:     #807b73;
+      --green:     #34d399;
+      --shadow:    0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    }
+
     *,*::before,*::after { box-sizing: border-box; }
 
     html { -webkit-text-size-adjust: 100%; }
@@ -225,6 +241,19 @@
       text-align: center;
     }
 
+    /* ===== Header actions (PDF + theme) ===== */
+    .cv-actions { display: flex; gap: .5rem; margin-left: auto; align-self: flex-start; }
+    .cv-btn {
+      font-family: var(--mono); font-size: .72rem; font-weight: 600;
+      color: var(--ink-2); background: var(--surface);
+      border: 1px solid var(--border-2); border-radius: 8px;
+      padding: .42rem .62rem; cursor: pointer;
+      display: inline-flex; align-items: center; gap: .35rem;
+      transition: border-color .15s, color .15s, background .15s;
+    }
+    .cv-btn:hover { border-color: var(--amber); color: var(--amber); }
+    .cv-btn svg { width: 14px; height: 14px; }
+
     /* ===== Responsive ===== */
     @media (max-width: 720px) {
       body { padding: 0; }
@@ -270,7 +299,20 @@
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
             github.com/bachnej
           </a>
+          <a href="https://www.linkedin.com/in/bachar-nejem-240649145/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14ZM8.34 18.34V9.98H5.67v8.36h2.67ZM7 8.79a1.55 1.55 0 1 0 0-3.1 1.55 1.55 0 0 0 0 3.1Zm11.34 9.55v-4.58c0-2.45-1.31-3.59-3.06-3.59-1.41 0-2.04.78-2.39 1.32V9.98h-2.67c.04.75 0 8.36 0 8.36h2.67v-4.66c0-.24.02-.48.09-.65.19-.48.63-.97 1.36-.97.96 0 1.35.73 1.35 1.8v4.48h2.65Z"/></svg>
+            bachar-nejem
+          </a>
         </div>
+      </div>
+      <div class="cv-actions">
+        <button id="pdfBtn" class="cv-btn" title="Download as PDF">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M5 21h14"/></svg>
+          PDF
+        </button>
+        <button id="themeToggle" class="cv-btn" title="Toggle theme">
+          <span id="themeIcon">☾</span>
+        </button>
       </div>
     </header>
 
@@ -347,7 +389,10 @@
           <div class="skill-group">
             <h4>E-Commerce Domain</h4>
             <div class="skill-chips">
-              <span class="chip hot">Promotions Engine</span>
+              <span class="chip hot">Checkout Processes</span>
+              <span class="chip hot">Carts</span>
+              <span class="chip hot">Shipping Options</span>
+              <span class="chip hot">Promotions</span>
               <span class="chip hot">Stock Reservations</span>
               <span class="chip hot">Order Flows</span>
               <span class="chip hot">OMS</span>
@@ -525,6 +570,23 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme toggle (persisted)
+    const root = document.documentElement;
+    const saved = localStorage.getItem('cv-theme');
+    if (saved) root.setAttribute('data-theme', saved);
+    const themeIcon = document.getElementById('themeIcon');
+    const syncIcon = () => { themeIcon.textContent = root.getAttribute('data-theme') === 'dark' ? '☀' : '☾'; };
+    syncIcon();
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('cv-theme', next);
+      syncIcon();
+    });
+
+    // Download PDF (browser print → Save as PDF)
+    document.getElementById('pdfBtn').addEventListener('click', () => window.print());
   </script>
 </body>
 </html>
