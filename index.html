@@ -254,6 +254,19 @@
     .cv-btn:hover { border-color: var(--amber); color: var(--amber); }
     .cv-btn svg { width: 14px; height: 14px; }
 
+    /* ===== Bottom row (Education / Certifications / Hobbies) ===== */
+    .cv-bottom {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: var(--surface-2);
+      border-top: 1px solid var(--border);
+    }
+    .bottom-col {
+      padding: 1.7rem 1.8rem;
+      border-right: 1px solid var(--border);
+    }
+    .bottom-col:last-child { border-right: none; }
+
     /* ===== Responsive ===== */
     @media (max-width: 720px) {
       body { padding: 0; }
@@ -263,15 +276,29 @@
       .cv-grid { grid-template-columns: 1fr; }
       .cv-side { border-right: none; border-bottom: 1px solid var(--border); }
       .cv-main, .cv-side { padding: 1.6rem 1.3rem; }
+      .cv-bottom { grid-template-columns: 1fr; }
+      .bottom-col { border-right: none; border-bottom: 1px solid var(--border); }
+      .bottom-col:last-child { border-bottom: none; }
       .exp-date { position: static; text-align: left; margin-top: 0.2rem; }
       .exp-top { flex-wrap: wrap; }
     }
 
     /* ===== Print ===== */
     @media print {
-      body { background: #fff; padding: 0; }
+      @page { margin: 10mm; }
+      body { background: #fff; padding: 0; font-size: 11px; }
       .cv-container { box-shadow: none; border: none; max-width: 100%; }
-      .cv-header, .cv-foot { background: #fff !important; }
+      .cv-header, .cv-foot, .cv-bottom { background: #fff !important; }
+      .cv-header { padding: 1.3rem 1.8rem; }
+      .cv-side, .cv-main { padding: 1.3rem 1.6rem; }
+      .bottom-col { padding: 1.2rem 1.5rem; }
+      .cv-grid { gap: 0; }
+      .side-block { margin-bottom: 1.2rem; }
+      .skill-group { margin-bottom: 0.75rem; }
+      .exp-item { margin-bottom: 1rem; break-inside: avoid; }
+      .exp-bullets { margin-top: 0.5rem; }
+      .exp-bullets li { margin-bottom: 0.18rem; }
+      .cv-summary li { margin-bottom: 0.35rem; }
       .exp-item::before { background: #ddd; }
       a { color: var(--ink); text-decoration: none; }
     }
@@ -412,42 +439,6 @@
           <div class="lang-bar"><i style="width:40%"></i></div>
         </div>
 
-        <div class="side-block">
-          <h3 class="sec-title">Education</h3>
-          <div class="edu-item">
-            <img src="img/grenoble-alpes-logo.jpeg" class="edu-logo" alt="Grenoble Alpes">
-            <div>
-              <div class="edu-role">MSc, Software Engineering</div>
-              <div class="edu-sub">Université Grenoble Alpes · 2012–2014</div>
-            </div>
-          </div>
-          <div class="edu-item">
-            <img src="img/grenoble-alpes-logo.jpeg" class="edu-logo" alt="Grenoble Alpes">
-            <div>
-              <div class="edu-role">BSc, Computer Science</div>
-              <div class="edu-sub">Université Grenoble Alpes · 2009–2012</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="side-block">
-          <h3 class="sec-title">Certifications</h3>
-          <div class="cert-item">
-            SAP Certified Development Professional
-            <span>SAP Hybris Commerce 6.2 Developer</span>
-          </div>
-        </div>
-
-        <div class="side-block">
-          <h3 class="sec-title">Hobbies</h3>
-          <div class="hobby-row">
-            <span class="chip">Basketball</span>
-            <span class="chip">Hiking</span>
-            <span class="chip">Camping</span>
-            <span class="chip">Scout Activity</span>
-          </div>
-        </div>
-
       </aside>
 
       <!-- Main -->
@@ -561,6 +552,42 @@
         </section>
       </main>
     </div>
+
+    <section class="cv-bottom">
+      <div class="bottom-col">
+        <h3 class="sec-title">Education</h3>
+        <div class="edu-item">
+          <img src="img/grenoble-alpes-logo.jpeg" class="edu-logo" alt="Grenoble Alpes">
+          <div>
+            <div class="edu-role">MSc, Software Engineering</div>
+            <div class="edu-sub">Université Grenoble Alpes · 2012–2014</div>
+          </div>
+        </div>
+        <div class="edu-item">
+          <img src="img/grenoble-alpes-logo.jpeg" class="edu-logo" alt="Grenoble Alpes">
+          <div>
+            <div class="edu-role">BSc, Computer Science</div>
+            <div class="edu-sub">Université Grenoble Alpes · 2009–2012</div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-col">
+        <h3 class="sec-title">Certifications</h3>
+        <div class="cert-item">
+          SAP Certified Development Professional
+          <span>SAP Hybris Commerce 6.2 Developer</span>
+        </div>
+      </div>
+      <div class="bottom-col">
+        <h3 class="sec-title">Hobbies</h3>
+        <div class="hobby-row">
+          <span class="chip">Basketball</span>
+          <span class="chip">Hiking</span>
+          <span class="chip">Camping</span>
+          <span class="chip">Scout Activity</span>
+        </div>
+      </div>
+    </section>
 
     <footer class="cv-foot">
       © <span id="year"></span> Bachar Nejem — CV built for GitHub Pages
