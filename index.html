@@ -5,447 +5,523 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bachar Nejem — CV</title>
   <meta name="description" content="Bachar Nejem — Senior Full Stack Engineer & AI Enthusiast. CV / Résumé.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    /* ===== Design Tokens (from v2.css) ===== */
     :root {
-      --bg:       #040408;
-      --surface:  #090910;
-      --card:     #0c0c14;
-      --elevated: #111118;
-      --amber:    #ffb400;
-      --amber-d:  rgba(255,180,0,0.12);
-      --amber-b:  rgba(255,180,0,0.32);
-      --green:    #00d67a;
-      --t1:       #e8e8e4;
-      --t2:       #8a8a82;
-      --t3:       #444440;
-      --border:   rgba(255,255,255,0.06);
-      --border-m: rgba(255,255,255,0.11);
-      --mono:     'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
-      --ease:     cubic-bezier(0.4,0,0.2,1);
+      --bg:        #f6f4ef;
+      --surface:   #ffffff;
+      --surface-2: #faf8f3;
+      --border:    #e7e2d8;
+      --border-2:  #d9d2c4;
+      --amber:     #b45309;
+      --amber-soft:#fdf4e7;
+      --amber-line:#f0d9b8;
+      --ink:       #1c1a17;
+      --ink-2:     #57534c;
+      --ink-3:     #8a857c;
+      --green:     #15803d;
+      --mono:      'JetBrains Mono', ui-monospace, monospace;
+      --sans:      'Inter', system-ui, -apple-system, sans-serif;
+      --radius:    14px;
+      --shadow:    0 1px 2px rgba(28,26,23,.04), 0 8px 24px rgba(28,26,23,.05);
     }
 
-    [data-theme="light"] {
-      --bg:       #f5f0e8;
-      --surface:  #ede8df;
-      --card:     #e6e0d6;
-      --elevated: #ddd6c8;
-      --amber:    #9a6600;
-      --amber-d:  rgba(154,102,0,0.1);
-      --amber-b:  rgba(154,102,0,0.28);
-      --green:    #006e3c;
-      --green-d:  rgba(0,110,60,0.1);
-      --red:      #cc2233;
-      --t1:       #1a1814;
-      --t2:       #5a5650;
-      --t3:       #9a9690;
-      --border:   rgba(0,0,0,0.09);
-      --border-m: rgba(0,0,0,0.15);
-    }
+    *,*::before,*::after { box-sizing: border-box; }
 
-    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
 
     body {
-      background: var(--bg);
-      color: var(--t1);
-      font-family: var(--mono);
-      font-size: 14px;
-      line-height: 1.65;
       margin: 0;
-      padding: 0;
-      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 2.5rem 1rem 3rem;
     }
 
-    a { color: var(--amber); text-decoration: none; transition: color 0.15s; }
-    a:hover { color: var(--t1); }
+    a { color: var(--amber); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-    main.page-wrap { max-width: 210mm; margin: 0 auto; padding: 0.5rem 1rem 2rem; }
+    .cv-container {
+      max-width: 980px;
+      margin: 0 auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
 
-    /* ===== CV Layout ===== */
-    .cv-profile-block {
-      padding: 1rem 0 0.75rem;
+    /* ===== Header ===== */
+    .cv-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 2.2rem 2.4rem;
+      background:
+        radial-gradient(120% 140% at 100% 0%, var(--amber-soft) 0%, transparent 55%),
+        var(--surface);
       border-bottom: 1px solid var(--border);
-      margin-bottom: 0.75rem;
+    }
+    .cv-avatar {
+      width: 78px; height: 78px; flex-shrink: 0;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #d97706, #b45309);
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-weight: 700; font-size: 1.7rem;
+      letter-spacing: -1px;
+      box-shadow: 0 6px 16px rgba(180,83,9,.28);
     }
     .cv-name {
-      font-size: clamp(1.4rem, 3.5vw, 2rem); font-weight: 700;
-      letter-spacing: -0.03em; color: var(--t1); margin-bottom: 1px;
+      margin: 0;
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
     }
-    .cv-title-line {
-      font-size: 0.7rem; color: var(--amber); margin-bottom: 0;
+    .cv-role {
+      margin: 0.35rem 0 0;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--amber);
+      letter-spacing: 0.02em;
     }
-    .cv-title-line::before { content: '> '; color: var(--t3); }
-    .cv-contact { margin-top: 0.4rem; font-size: 0.65rem; color: var(--t2); }
-    .cv-contact a { color: var(--amber); }
+    .cv-role::before { content: '▸ '; opacity: .6; }
+    .cv-contact {
+      margin-top: 0.7rem;
+      display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem;
+      font-size: 0.78rem; color: var(--ink-2);
+    }
+    .cv-contact a, .cv-contact span { display: inline-flex; align-items: center; gap: 0.35rem; }
+    .cv-contact svg { width: 13px; height: 13px; opacity: .65; }
 
-    .cv-section {
-      background: var(--card) !important;
-      border: 1px solid var(--border) !important;
-      border-radius: 3px !important;
-      overflow: hidden; margin-bottom: 0.6rem;
+    /* ===== Layout ===== */
+    .cv-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 0;
     }
-    .cv-header {
-      background: var(--elevated) !important;
-      padding: 0.4rem 0.85rem !important;
-      border-bottom: 1px solid var(--border) !important;
+    .cv-side {
+      padding: 2rem 1.8rem;
+      background: var(--surface-2);
+      border-right: 1px solid var(--border);
     }
-    .cv-header h3 {
-      color: var(--amber) !important;
-      font-family: var(--mono) !important; font-size: 0.7rem !important;
-      font-weight: 700; margin: 0; letter-spacing: 0.02em;
-      text-transform: uppercase;
+    .cv-main {
+      padding: 2rem 2.2rem;
+      min-width: 0;
     }
-    .cv-header h3::before { content: '// '; opacity: 0.5; }
-    .cv-body { padding: 0.6rem 0.85rem !important; }
 
-    .cv-summary-list { list-style: none; padding: 0; margin: 0; }
-    .cv-summary-list li {
-      font-size: 0.68rem; color: var(--t2); padding: 2px 0;
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: flex-start; gap: 5px; line-height: 1.45;
+    /* ===== Section headings ===== */
+    .sec-title {
+      display: flex; align-items: center; gap: 0.55rem;
+      font-family: var(--mono);
+      font-size: 0.72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--amber);
+      margin: 0 0 1rem;
     }
-    .cv-summary-list li:last-child { border-bottom: none; }
-    .cv-summary-list li::before { content: '›'; color: var(--amber); flex-shrink: 0; margin-top: 1px; font-size: 0.6rem; }
-
-    .experience-item {
-      background: var(--elevated) !important;
-      border: 1px solid var(--border) !important;
-      border-radius: 2px !important;
-      padding: 0.6rem !important;
-      margin-bottom: 0.4rem !important;
+    .sec-title::before {
+      content: ''; width: 14px; height: 2px; background: var(--amber); border-radius: 2px;
     }
-    .experience-item:last-child { margin-bottom: 0 !important; }
+    .cv-main .sec-title { margin-top: 2rem; }
+    .cv-main .sec-title:first-child { margin-top: 0; }
 
-    .exp-header { display: flex; align-items: flex-start; gap: 0.6rem; margin-bottom: 0.4rem; }
+    /* ===== Summary ===== */
+    .cv-summary p { margin: 0; color: var(--ink-2); font-size: 0.92rem; }
+    .cv-summary ul { margin: 0.9rem 0 0; padding: 0; list-style: none; }
+    .cv-summary li {
+      position: relative; padding-left: 1.1rem; margin-bottom: 0.55rem;
+      font-size: 0.88rem; color: var(--ink-2);
+    }
+    .cv-summary li::before {
+      content: ''; position: absolute; left: 0; top: 0.6em;
+      width: 5px; height: 5px; border-radius: 50%; background: var(--amber);
+    }
+
+    /* ===== Experience ===== */
+    .exp-item { position: relative; padding-left: 1.4rem; margin-bottom: 1.7rem; }
+    .exp-item:last-child { margin-bottom: 0; }
+    .exp-item::before {
+      content: ''; position: absolute; left: 3px; top: 6px; bottom: -1.7rem;
+      width: 2px; background: var(--border-2);
+    }
+    .exp-item:last-child::before { bottom: auto; height: 0; }
+    .exp-item::after {
+      content: ''; position: absolute; left: 0; top: 7px;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--surface); border: 2px solid var(--amber);
+    }
+    .exp-top { display: flex; align-items: flex-start; gap: 0.7rem; }
     .exp-logo {
-      width: 22px; height: 22px; border-radius: 2px; object-fit: cover;
-      border: 1px solid var(--border); flex-shrink: 0; margin-top: 1px; filter: grayscale(20%);
+      width: 34px; height: 34px; border-radius: 8px; object-fit: cover;
+      border: 1px solid var(--border); background: var(--surface-2);
+      flex-shrink: 0; padding: 3px;
     }
-    .exp-meta { flex: 1; min-width: 0; }
-    .job-title {
-      color: var(--amber) !important; font-family: var(--mono) !important;
-      font-size: 0.75rem !important; font-weight: 700; margin-bottom: 1px !important;
+    .exp-role { font-weight: 700; font-size: 0.98rem; color: var(--ink); line-height: 1.25; }
+    .exp-co { font-size: 0.85rem; color: var(--amber); font-weight: 600; }
+    .exp-date {
+      margin-left: auto; flex-shrink: 0;
+      font-family: var(--mono); font-size: 0.7rem; color: var(--ink-3);
+      text-align: right; padding-top: 2px;
     }
-    .company-name {
-      color: var(--t1) !important; font-family: var(--mono) !important;
-      font-size: 0.7rem !important; margin-bottom: 1px !important;
-    }
-    .job-period { color: var(--t3) !important; font-family: var(--mono) !important; font-size: 0.65rem !important; }
-    .job-description { padding-left: 8px !important; border-left: 1px solid var(--amber-b) !important; margin-top: 0.4rem !important; }
-    .job-description li {
-      color: var(--t2) !important; font-family: var(--mono) !important;
-      font-size: 0.67rem !important; margin-bottom: 1px !important; line-height: 1.4;
-    }
-    .tech-stack {
-      background: var(--card) !important; color: var(--amber) !important;
-      font-family: var(--mono) !important; font-size: 0.62rem !important;
-      border: 1px solid var(--amber-b) !important; border-radius: 2px !important;
-      display: inline-block; padding: 2px 6px !important; margin-top: 0.3rem !important;
-    }
-    .tech-stack::before { content: '> '; opacity: 0.5; }
-
-    .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.4rem; }
-    .skill-category {
-      background: var(--elevated); border: 1px solid var(--border);
-      border-radius: 2px; padding: 0.4rem 0.6rem;
-    }
-    .skill-category-title {
-      font-family: var(--mono); font-size: 0.6rem; font-weight: 700;
-      color: var(--amber); margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 0.03em;
-    }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 3px; }
-    .skill-badge {
-      background: var(--card) !important; color: var(--t2) !important;
-      border: 1px solid var(--border-m) !important; font-family: var(--mono) !important;
-      font-size: 0.6rem !important; padding: 2px 6px !important; border-radius: 2px !important;
-      display: inline-block !important; white-space: nowrap;
-    }
-    .skill-badge.highlight {
-      background: var(--amber-d) !important; color: var(--amber) !important;
-      border-color: var(--amber-b) !important;
+    .exp-bullets { margin: 0.7rem 0 0; padding-left: 1.05rem; }
+    .exp-bullets li { font-size: 0.86rem; color: var(--ink-2); margin-bottom: 0.35rem; }
+    .exp-tags { margin-top: 0.65rem; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .tag {
+      font-family: var(--mono); font-size: 0.66rem; font-weight: 500;
+      color: var(--amber); background: var(--amber-soft);
+      border: 1px solid var(--amber-line); border-radius: 6px; padding: 2px 8px;
     }
 
-    .edu-item {
-      background: var(--elevated); border: 1px solid var(--border);
-      border-radius: 2px; padding: 0.5rem 0.65rem; margin-bottom: 0.3rem;
-      display: flex; align-items: center; gap: 0.5rem;
+    /* ===== Skills ===== */
+    .skill-group { margin-bottom: 1.1rem; }
+    .skill-group:last-child { margin-bottom: 0; }
+    .skill-group h4 {
+      margin: 0 0 0.5rem; font-size: 0.74rem; font-weight: 600; color: var(--ink);
     }
+    .skill-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .chip {
+      font-size: 0.72rem; font-weight: 500; color: var(--ink-2);
+      background: var(--surface); border: 1px solid var(--border-2);
+      border-radius: 999px; padding: 3px 10px;
+    }
+    .chip.hot { color: var(--amber); background: var(--amber-soft); border-color: var(--amber-line); font-weight: 600; }
+
+    /* ===== Side cards ===== */
+    .side-block { margin-bottom: 1.9rem; }
+    .side-block:last-child { margin-bottom: 0; }
+
+    .edu-item { display: flex; gap: 0.6rem; align-items: flex-start; margin-bottom: 0.9rem; }
     .edu-item:last-child { margin-bottom: 0; }
-    .edu-logo { width: 22px; height: 22px; border-radius: 2px; object-fit: cover; border: 1px solid var(--border); flex-shrink: 0; filter: grayscale(20%); }
-    .edu-role { font-size: 0.67rem; font-weight: 700; color: var(--amber); margin-bottom: 1px; }
-    .edu-school { font-size: 0.62rem; color: var(--t1); margin-bottom: 1px; }
-    .edu-period { font-size: 0.58rem; color: var(--t3); }
+    .edu-logo { width: 30px; height: 30px; border-radius: 7px; object-fit: cover; border: 1px solid var(--border); flex-shrink: 0; padding: 2px; background: #fff; }
+    .edu-role { font-size: 0.8rem; font-weight: 600; color: var(--ink); line-height: 1.25; }
+    .edu-sub { font-size: 0.74rem; color: var(--ink-3); }
 
-    footer {
-      text-align: center; padding: 1.25rem; color: var(--t3);
-      font-family: var(--mono); font-size: 0.65rem; border-top: 1px solid var(--border);
+    .lang-row { display: flex; align-items: center; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.5rem; }
+    .lang-row .lvl { font-size: 0.7rem; color: var(--ink-3); font-family: var(--mono); }
+    .lang-bar { height: 4px; border-radius: 4px; background: var(--border-2); margin: -0.25rem 0 0.6rem; overflow: hidden; }
+    .lang-bar > i { display: block; height: 100%; background: var(--amber); border-radius: 4px; }
+
+    .hobby-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+    .cert-item {
+      font-size: 0.8rem; font-weight: 600; color: var(--ink);
+      background: var(--surface); border: 1px solid var(--border-2);
+      border-left: 3px solid var(--amber); border-radius: 8px; padding: 0.55rem 0.7rem;
+    }
+    .cert-item span { display: block; font-weight: 400; font-size: 0.72rem; color: var(--ink-3); margin-top: 2px; }
+
+    /* ===== Footer ===== */
+    .cv-foot {
+      padding: 1.1rem 2.4rem; border-top: 1px solid var(--border);
+      background: var(--surface-2);
+      font-family: var(--mono); font-size: 0.7rem; color: var(--ink-3);
+      text-align: center;
     }
 
-    @media (max-width: 600px) {
-      .skills-grid { grid-template-columns: 1fr; }
+    /* ===== Responsive ===== */
+    @media (max-width: 720px) {
+      body { padding: 0; }
+      .cv-container { border-radius: 0; border-left: none; border-right: none; }
+      .cv-header { flex-direction: column; text-align: center; padding: 1.8rem 1.3rem; }
+      .cv-contact { justify-content: center; }
+      .cv-grid { grid-template-columns: 1fr; }
+      .cv-side { border-right: none; border-bottom: 1px solid var(--border); }
+      .cv-main, .cv-side { padding: 1.6rem 1.3rem; }
+      .exp-date { position: static; text-align: left; margin-top: 0.2rem; }
+      .exp-top { flex-wrap: wrap; }
+    }
+
+    /* ===== Print ===== */
+    @media print {
+      body { background: #fff; padding: 0; }
+      .cv-container { box-shadow: none; border: none; max-width: 100%; }
+      .cv-header, .cv-foot { background: #fff !important; }
+      .exp-item::before { background: #ddd; }
+      a { color: var(--ink); text-decoration: none; }
     }
   </style>
 </head>
 <body>
-  <main class="page-wrap">
+  <div class="cv-container">
 
-    <!-- Profile header -->
-    <div class="cv-profile-block">
-      <div class="cv-name">Bachar Nejem</div>
-      <div class="cv-title-line">Senior Full Stack Engineer & AI Enthusiast</div>
-      <div class="cv-contact"><a href="mailto:bachar.nejem@gmail.com">bachar.nejem@gmail.com</a></div>
-    </div>
-
-    <!-- Summary -->
-    <div class="cv-section">
-      <div class="cv-header"><h3>Summary</h3></div>
-      <div class="cv-body">
-        <ul class="cv-summary-list">
-          <li>15+ years of software development experience, with deep expertise in high-scale e-commerce platforms, checkout systems, and distributed architectures.</li>
-          <li>Senior full-stack engineer mastering the full order lifecycle: promotions engine, stock reservations, order creation flows, payment processing, and Order Messaging System (OMS).</li>
-          <li>Proven track record leading Java-to-cloud-native migrations (C#/.NET, Kafka, BigQuery, Docker, Cassandra, Kubernetes) with strong DevOps/SRE practices: CI/CD, observability (Kibana, Grafana), heap dump analysis, and production incident response.</li>
-          <li>Performance engineering focus: optimizing endpoint response times, database caching strategies, external service call patterns, and reactive microservices handling millions of transactions daily.</li>
-          <li>AI practitioner building production-grade agents: code review automation, backoffice assistants, and intelligent workflows using LLMs and agent frameworks.</li>
-        </ul>
+    <!-- Header -->
+    <header class="cv-header">
+      <div class="cv-avatar">BN</div>
+      <div>
+        <h1 class="cv-name">Bachar Nejem</h1>
+        <p class="cv-role">Senior Full Stack Engineer &amp; AI Enthusiast</p>
+        <div class="cv-contact">
+          <a href="mailto:bachar.nejem@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            bachar.nejem@gmail.com
+          </a>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            France
+          </span>
+          <a href="https://github.com/bachnej" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+            github.com/bachnej
+          </a>
+        </div>
       </div>
-    </div>
+    </header>
 
-    <!-- Experience -->
-    <div class="cv-section">
-      <div class="cv-header"><h3>Experience</h3></div>
-      <div class="cv-body">
+    <div class="cv-grid">
 
-        <div class="experience-item">
-          <div class="exp-header">
-            <img src="img/veepee-logo.jpeg" class="exp-logo" alt="Veepee">
-            <div class="exp-meta">
-              <div class="job-title">Senior Software Engineer</div>
-              <div class="company-name">Veepee</div>
-              <div class="job-period">Aug 2022 — Present</div>
+      <!-- Sidebar -->
+      <aside class="cv-side">
+
+        <div class="side-block">
+          <h3 class="sec-title">Skills</h3>
+
+          <div class="skill-group">
+            <h4>Core Backend</h4>
+            <div class="skill-chips">
+              <span class="chip hot">Java</span>
+              <span class="chip hot">C# / .NET</span>
+              <span class="chip hot">Spring Boot</span>
+              <span class="chip hot">Node.js</span>
+              <span class="chip hot">Express.js</span>
+              <span class="chip hot">Microservices</span>
+              <span class="chip hot">Project Reactor</span>
+              <span class="chip">SQL</span>
+              <span class="chip">REST / gRPC</span>
             </div>
           </div>
-          <ul class="job-description">
-            <li>Senior engineer on the Checkout & Cart team at one of Europe's largest flash-sale platforms, owning critical paths from cart to order confirmation.</li>
-            <li>Deep domain expertise in promotions engine, stock reservation strategies, order creation flows, and payment gateway integrations.</li>
-            <li>Built high-performance reactive microservices (Project Reactor, Kafka) processing millions of transactions during peak flash sales.</li>
-            <li>Led migration of legacy Java services to modern cloud-native stack (C#/.NET, Kafka, BigQuery, Docker, Cassandra, Kubernetes).</li>
-            <li>DevOps/SRE ownership: designed CI/CD pipelines, implemented observability (Kibana, Grafana dashboards, alerting), conducted heap dump analysis for memory leaks, and drove production incident resolution.</li>
-            <li>Performance engineering: optimized endpoint response times (p99 latency reduction), redesigned database caching layers (Cassandra, Redis), and refactored external service call patterns for resilience and throughput.</li>
-            <li>Mentoring and code review leadership; introduced AI-assisted code review agents to accelerate quality gates.</li>
+
+          <div class="skill-group">
+            <h4>Frontend &amp; Web</h4>
+            <div class="skill-chips">
+              <span class="chip">Vue.js</span>
+              <span class="chip">React</span>
+              <span class="chip hot">HTML5</span>
+              <span class="chip hot">CSS3</span>
+              <span class="chip hot">Bootstrap</span>
+              <span class="chip hot">jQuery</span>
+              <span class="chip hot">EJS</span>
+              <span class="chip">Responsive Design</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h4>Data &amp; Messaging</h4>
+            <div class="skill-chips">
+              <span class="chip hot">Kafka</span>
+              <span class="chip hot">Cassandra</span>
+              <span class="chip hot">MongoDB</span>
+              <span class="chip">BigQuery</span>
+              <span class="chip">Redis / Caching</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h4>Cloud &amp; DevOps</h4>
+            <div class="skill-chips">
+              <span class="chip hot">Docker</span>
+              <span class="chip hot">Kubernetes</span>
+              <span class="chip hot">CI/CD</span>
+              <span class="chip">Kibana / Grafana</span>
+              <span class="chip">Performance Tuning</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h4>AI &amp; Automation</h4>
+            <div class="skill-chips">
+              <span class="chip hot">AI Agents / LLMs</span>
+              <span class="chip hot">OpenAI API</span>
+              <span class="chip hot">Code Review Bots</span>
+              <span class="chip">Backoffice Assistants</span>
+              <span class="chip">Git</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h4>E-Commerce Domain</h4>
+            <div class="skill-chips">
+              <span class="chip hot">Promotions Engine</span>
+              <span class="chip hot">Stock Reservations</span>
+              <span class="chip hot">Order Flows</span>
+              <span class="chip hot">OMS</span>
+              <span class="chip">Payment Gateways</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="side-block">
+          <h3 class="sec-title">Languages</h3>
+          <div class="lang-row"><span>Arabic</span><span class="lvl">Native</span></div>
+          <div class="lang-bar"><i style="width:100%"></i></div>
+          <div class="lang-row"><span>English</span><span class="lvl">Fluent</span></div>
+          <div class="lang-bar"><i style="width:92%"></i></div>
+          <div class="lang-row"><span>French</span><span class="lvl">Fluent</span></div>
+          <div class="lang-bar"><i style="width:90%"></i></div>
+          <div class="lang-row"><span>Spanish</span><span class="lvl">Basic</span></div>
+          <div class="lang-bar"><i style="width:40%"></i></div>
+        </div>
+
+        <div class="side-block">
+          <h3 class="sec-title">Education</h3>
+          <div class="edu-item">
+            <img src="img/grenoble-alpes-logo.jpeg" class="edu-logo" alt="Grenoble Alpes">
+            <div>
+              <div class="edu-role">MSc, Software Engineering</div>
+              <div class="edu-sub">Université Grenoble Alpes · 2012–2014</div>
+            </div>
+          </div>
+          <div class="edu-item">
+            <img src="img/grenoble-alpes-logo.jpeg" class="edu-logo" alt="Grenoble Alpes">
+            <div>
+              <div class="edu-role">BSc, Computer Science</div>
+              <div class="edu-sub">Université Grenoble Alpes · 2009–2012</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="side-block">
+          <h3 class="sec-title">Certifications</h3>
+          <div class="cert-item">
+            SAP Certified Development Professional
+            <span>SAP Hybris Commerce 6.2 Developer</span>
+          </div>
+        </div>
+
+        <div class="side-block">
+          <h3 class="sec-title">Hobbies</h3>
+          <div class="hobby-row">
+            <span class="chip">Basketball</span>
+            <span class="chip">Hiking</span>
+            <span class="chip">Camping</span>
+            <span class="chip">Scout Activity</span>
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- Main -->
+      <main class="cv-main">
+
+        <section class="cv-summary">
+          <h3 class="sec-title">Summary</h3>
+          <p>15+ years building high-scale e-commerce and distributed systems, with deep ownership of the full order lifecycle — from cart to confirmation.</p>
+          <ul>
+            <li>Senior full-stack engineer specializing in promotions engines, stock reservations, order creation, payments and OMS.</li>
+            <li>Led Java → cloud-native migrations (C#/.NET, Kafka, BigQuery, Docker, Cassandra, Kubernetes) with strong DevOps/SRE practices.</li>
+            <li>Performance engineering: p99 latency reduction, caching layers (Cassandra, Redis), resilient reactive microservices at millions of transactions/day.</li>
+            <li>AI practitioner shipping production agents: code-review automation, backoffice assistants, LLM workflows.</li>
           </ul>
-          <span class="tech-stack">Java, C#/.NET, Kafka, BigQuery, Docker, Cassandra, Project Reactor, Microservices, MongoDB, Kubernetes, Redis, Kibana, Grafana</span>
-        </div>
+        </section>
 
-        <div class="experience-item">
-          <div class="exp-header">
-            <img src="img/mgm-logo.jpeg" class="exp-logo" alt="mgm">
-            <div class="exp-meta">
-              <div class="job-title">Full-stack Java Developer</div>
-              <div class="company-name">mgm technology partners GmbH</div>
-              <div class="job-period">Jul 2021 — Aug 2022</div>
+        <section>
+          <h3 class="sec-title">Experience</h3>
+
+          <div class="exp-item">
+            <div class="exp-top">
+              <img src="img/veepee-logo.jpeg" class="exp-logo" alt="Veepee">
+              <div>
+                <div class="exp-role">Senior Software Engineer</div>
+                <div class="exp-co">Veepee</div>
+              </div>
+              <div class="exp-date">Aug 2022 — Present</div>
+            </div>
+            <ul class="exp-bullets">
+              <li>Owned critical checkout &amp; cart paths at one of Europe's largest flash-sale platforms.</li>
+              <li>Built reactive microservices (Project Reactor, Kafka) processing millions of transactions at peak.</li>
+              <li>Led cloud-native migration and drove CI/CD, observability (Kibana, Grafana) and incident response.</li>
+              <li>Optimized p99 latency and redesigned caching (Cassandra, Redis); introduced AI code-review agents.</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="tag">Java</span><span class="tag">C# / .NET</span><span class="tag">Kafka</span><span class="tag">Kubernetes</span><span class="tag">Redis</span>
             </div>
           </div>
-          <ul class="job-description">
-            <li>Built from scratch a security findings visualization and tracking platform for enterprise vulnerability management.</li>
-            <li>Designed dashboards for tracking vulnerabilities across websites and artifacts with real-time risk scoring.</li>
-          </ul>
-          <span class="tech-stack">JHipster, MongoDB, Vue.js, Spring Boot</span>
-        </div>
 
-        <div class="experience-item">
-          <div class="exp-header">
-            <img src="img/mgm-logo.jpeg" class="exp-logo" alt="mgm">
-            <div class="exp-meta">
-              <div class="job-title">Full-stack Java Developer</div>
-              <div class="company-name">mgm technology partners GmbH</div>
-              <div class="job-period">Jan 2017 — Jul 2021</div>
+          <div class="exp-item">
+            <div class="exp-top">
+              <img src="img/mgm-logo.jpeg" class="exp-logo" alt="mgm">
+              <div>
+                <div class="exp-role">Full-stack Java Developer</div>
+                <div class="exp-co">mgm technology partners GmbH</div>
+              </div>
+              <div class="exp-date">Jul 2021 — Aug 2022</div>
+            </div>
+            <ul class="exp-bullets">
+              <li>Built a security-findings visualization &amp; tracking platform for enterprise vulnerability management.</li>
+              <li>Designed real-time risk-scoring dashboards across websites and artifacts.</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="tag">JHipster</span><span class="tag">MongoDB</span><span class="tag">Vue.js</span><span class="tag">Spring Boot</span>
             </div>
           </div>
-          <ul class="job-description">
-            <li>Built enterprise e-commerce platforms using Spring, Struts2, and Node.js for high-traffic retail clients.</li>
-            <li>Led migration from monolithic architecture to microservices, defining service boundaries and data ownership.</li>
-            <li>Designed and implemented core features for high-traffic web applications with focus on scalability and maintainability.</li>
-          </ul>
-          <span class="tech-stack">Spring, Node.js, Struts2, Microservices</span>
-        </div>
 
-        <div class="experience-item">
-          <div class="exp-header">
-            <img src="img/mgm-logo.jpeg" class="exp-logo" alt="mgm">
-            <div class="exp-meta">
-              <div class="job-title">SAP Consultant / Java Developer</div>
-              <div class="company-name">mgm technology partners GmbH</div>
-              <div class="job-period">Sep 2014 — Jan 2017</div>
+          <div class="exp-item">
+            <div class="exp-top">
+              <img src="img/mgm-logo.jpeg" class="exp-logo" alt="mgm">
+              <div>
+                <div class="exp-role">Full-stack Java Developer</div>
+                <div class="exp-co">mgm technology partners GmbH</div>
+              </div>
+              <div class="exp-date">Jan 2017 — Jul 2021</div>
+            </div>
+            <ul class="exp-bullets">
+              <li>Built enterprise e-commerce platforms (Spring, Struts2, Node.js) for high-traffic retail clients.</li>
+              <li>Led monolith → microservices migration, defining service boundaries and data ownership.</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="tag">Spring</span><span class="tag">Node.js</span><span class="tag">Struts2</span><span class="tag">Microservices</span>
             </div>
           </div>
-          <ul class="job-description">
-            <li>Built and maintained enterprise e-commerce shops using SAP Hybris platform (SAP Certified Development Professional).</li>
-          </ul>
-          <span class="tech-stack">SAP Hybris, Java, Spring</span>
-        </div>
 
-        <div class="experience-item">
-          <div class="exp-header">
-            <img src="img/koelis-logo.jpeg" class="exp-logo" alt="KOELIS">
-            <div class="exp-meta">
-              <div class="job-title">Web Developer & Bash Scripting</div>
-              <div class="company-name">KOELIS</div>
-              <div class="job-period">Sep 2013 — Jul 2014</div>
+          <div class="exp-item">
+            <div class="exp-top">
+              <img src="img/mgm-logo.jpeg" class="exp-logo" alt="mgm">
+              <div>
+                <div class="exp-role">SAP Consultant / Java Developer</div>
+                <div class="exp-co">mgm technology partners GmbH</div>
+              </div>
+              <div class="exp-date">Sep 2014 — Jan 2017</div>
+            </div>
+            <ul class="exp-bullets">
+              <li>Built and maintained enterprise e-commerce shops on the SAP Hybris platform.</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="tag">SAP Hybris</span><span class="tag">Java</span><span class="tag">Spring</span>
             </div>
           </div>
-          <ul class="job-description">
-            <li>Developed tools for synchronizing and storing large medical data and images.</li>
-            <li>Configured web servers optimized for serving large datasets.</li>
-          </ul>
-          <span class="tech-stack">Linux, Bash, rsync, NAS Server</span>
-        </div>
 
-      </div>
+          <div class="exp-item">
+            <div class="exp-top">
+              <img src="img/koelis-logo.jpeg" class="exp-logo" alt="KOELIS">
+              <div>
+                <div class="exp-role">Web Developer &amp; Bash Scripting</div>
+                <div class="exp-co">KOELIS</div>
+              </div>
+              <div class="exp-date">Sep 2013 — Jul 2014</div>
+            </div>
+            <ul class="exp-bullets">
+              <li>Developed tools for syncing and storing large medical datasets and images.</li>
+              <li>Configured web servers optimized for serving large datasets.</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="tag">Linux</span><span class="tag">Bash</span><span class="tag">rsync</span>
+            </div>
+          </div>
+
+        </section>
+      </main>
     </div>
 
-    <!-- Skills -->
-    <div class="cv-section">
-      <div class="cv-header"><h3>Skills</h3></div>
-      <div class="cv-body">
-        <div class="skills-grid">
-          <div class="skill-category">
-            <div class="skill-category-title">Core Backend</div>
-            <div class="skill-tags">
-              <span class="skill-badge highlight">Java</span>
-              <span class="skill-badge highlight">C# / .NET</span>
-              <span class="skill-badge highlight">Spring Boot</span>
-              <span class="skill-badge highlight">Microservices Architecture</span>
-              <span class="skill-badge highlight">Project Reactor</span>
-              <span class="skill-badge highlight">Node.js</span>
-              <span class="skill-badge highlight">Express.js</span>
-              <span class="skill-badge">SQL</span>
-              <span class="skill-badge">REST / gRPC APIs</span>
-            </div>
-          </div>
-          <div class="skill-category">
-            <div class="skill-category-title">E-Commerce Domain</div>
-            <div class="skill-tags">
-              <span class="skill-badge highlight">Promotions & Discounts Engine</span>
-              <span class="skill-badge highlight">Stock Reservations</span>
-              <span class="skill-badge highlight">Order Creation Flows</span>
-              <span class="skill-badge highlight">Order Messaging System (OMS)</span>
-              <span class="skill-badge">Payment Gateways</span>
-            </div>
-          </div>
-          <div class="skill-category">
-            <div class="skill-category-title">Data & Messaging</div>
-            <div class="skill-tags">
-              <span class="skill-badge highlight">Kafka / Event-Driven</span>
-              <span class="skill-badge highlight">Cassandra</span>
-              <span class="skill-badge">BigQuery</span>
-              <span class="skill-badge highlight">MongoDB</span>
-              <span class="skill-badge">Redis / Caching Strategies</span>
-            </div>
-          </div>
-          <div class="skill-category">
-            <div class="skill-category-title">Cloud & DevOps</div>
-            <div class="skill-tags">
-              <span class="skill-badge highlight">Docker & Kubernetes</span>
-              <span class="skill-badge">CI/CD Pipelines</span>
-              <span class="skill-badge">Observability (Kibana, Grafana)</span>
-              <span class="skill-badge">Heap Dump Analysis</span>
-              <span class="skill-badge">Performance Optimization</span>
-              <span class="skill-badge">Database Optimization</span>
-            </div>
-          </div>
-          <div class="skill-category">
-            <div class="skill-category-title">Frontend & Web</div>
-            <div class="skill-tags">
-              <span class="skill-badge">Vue.js</span>
-              <span class="skill-badge">React</span>
-              <span class="skill-badge highlight">HTML5</span>
-              <span class="skill-badge highlight">CSS3</span>
-              <span class="skill-badge highlight">Bootstrap</span>
-              <span class="skill-badge highlight">jQuery</span>
-              <span class="skill-badge highlight">EJS</span>
-              <span class="skill-badge">Responsive Design</span>
-            </div>
-          </div>
-          <div class="skill-category">
-            <div class="skill-category-title">AI & Automation</div>
-            <div class="skill-tags">
-              <span class="skill-badge highlight">AI Agents & LLM Applications</span>
-              <span class="skill-badge highlight">OpenAI API / Agent Frameworks</span>
-              <span class="skill-badge highlight">Code Review Automation</span>
-              <span class="skill-badge highlight">Backoffice AI Assistants</span>
-              <span class="skill-badge">DevOps / SRE Practices</span>
-              <span class="skill-badge">Reactive Programming</span>
-              <span class="skill-badge">Git</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Languages -->
-    <div class="cv-section">
-      <div class="cv-header"><h3>Languages</h3></div>
-      <div class="cv-body" style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
-        <div><span class="skill-badge highlight">English</span> <span style="font-size: 0.6rem; color: var(--t3);">Fluent</span></div>
-        <div><span class="skill-badge highlight">French</span> <span style="font-size: 0.6rem; color: var(--t3);">Fluent</span></div>
-        <div><span class="skill-badge highlight">Arabic</span> <span style="font-size: 0.6rem; color: var(--t3);">Native</span></div>
-        <div><span class="skill-badge">Spanish</span> <span style="font-size: 0.6rem; color: var(--t3);">Basic</span></div>
-      </div>
-    </div>
-
-    <!-- Hobbies -->
-    <div class="cv-section">
-      <div class="cv-header"><h3>Hobbies</h3></div>
-      <div class="cv-body" style="display: flex; gap: 1rem; flex-wrap: wrap;">
-        <span class="skill-badge">Basketball</span>
-        <span class="skill-badge">Hiking</span>
-        <span class="skill-badge">Camping</span>
-        <span class="skill-badge">Scout Activity</span>
-      </div>
-    </div>
-
-    <!-- Education -->
-    <div class="cv-section">
-      <div class="cv-header"><h3>Education</h3></div>
-      <div class="cv-body">
-        <div class="edu-item">
-          <img src="img/grenoble-alpes-logo.jpeg" class="edu-logo" alt="Grenoble Alpes">
-          <div>
-            <div class="edu-role">Master's Degree, Computer Software Engineering</div>
-            <div class="edu-school">Universite Grenoble Alpes</div>
-            <div class="edu-period">2012 — 2014</div>
-          </div>
-        </div>
-        <div class="edu-item">
-          <img src="img/grenoble-alpes-logo.jpeg" class="edu-logo" alt="Grenoble Alpes">
-          <div>
-            <div class="edu-role">Licentiate Degree, Computer Science</div>
-            <div class="edu-school">Universite Grenoble Alpes</div>
-            <div class="edu-period">2009 — 2012</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Certifications -->
-    <div class="cv-section">
-      <div class="cv-header"><h3>Certifications</h3></div>
-      <div class="cv-body">
-        <div class="edu-item">
-          <img src="img/sap-logo.jpeg" class="edu-logo" alt="SAP">
-          <div>
-            <div class="edu-role">SAP Certified Development Professional</div>
-            <div class="edu-school">SAP Hybris Commerce 6.2 Developer</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </main>
-
-  <footer>
-    © <span id="year"></span> Bachar Nejem — Built for GitHub Pages
-  </footer>
+    <footer class="cv-foot">
+      © <span id="year"></span> Bachar Nejem — CV built for GitHub Pages
+    </footer>
+  </div>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
