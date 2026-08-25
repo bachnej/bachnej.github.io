@@ -84,14 +84,11 @@
       border-bottom: 1px solid var(--border);
     }
     .cv-avatar {
-      width: 78px; height: 78px; flex-shrink: 0;
-      border-radius: 18px;
-      background: linear-gradient(135deg, #d97706, #b45309);
-      color: #fff;
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--mono); font-weight: 700; font-size: 1.7rem;
-      letter-spacing: -1px;
-      box-shadow: 0 6px 16px rgba(180,83,9,.28);
+      width: 84px; height: 84px; flex-shrink: 0;
+      border-radius: 20px;
+      object-fit: cover;
+      border: 2px solid var(--amber);
+      box-shadow: 0 6px 16px rgba(180,83,9,.25);
     }
     .cv-name {
       margin: 0;
@@ -291,7 +288,7 @@
       .cv-container { box-shadow: none; border: none; border-radius: 0; max-width: 100%; }
       .cv-header, .cv-foot, .cv-bottom { background: #fff !important; }
       .cv-header { padding: 0.9rem 1.4rem; gap: 1rem; }
-      .cv-avatar { width: 52px; height: 52px; font-size: 1.2rem; border-radius: 12px; }
+      .cv-avatar { width: 58px; height: 58px; border-radius: 14px; }
       .cv-name { font-size: 1.5rem; }
       .cv-role { font-size: 0.68rem; margin-top: 0.2rem; }
       .cv-contact { font-size: 0.66rem; margin-top: 0.4rem; }
@@ -335,7 +332,7 @@
 
     <!-- Header -->
     <header class="cv-header">
-      <div class="cv-avatar">BN</div>
+      <img src="img/avatar.jpg" class="cv-avatar" alt="Bachar Nejem">
       <div>
         <h1 class="cv-name">Bachar Nejem</h1>
         <p class="cv-role">Senior Full Stack Engineer &amp; AI Enthusiast</p>
